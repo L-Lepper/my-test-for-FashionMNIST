@@ -26,9 +26,9 @@ def main():
     np.random.seed(0)
 
     #   Hyperparameters
-    learning_rate = 2e-4
+    learning_rate = 1e-4
     batch_size = 64
-    epochs = 3
+    epochs = 100
 
     #   set up train and test dataset and the dataloaders
     temp = setup_datasets_dataloader(batch_size)
