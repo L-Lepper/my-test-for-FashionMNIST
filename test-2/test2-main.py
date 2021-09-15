@@ -29,7 +29,7 @@ def main():
     #   Hyperparameters
     learning_rate = 1e-4
     batch_size = 64
-    epochs = 35
+    epochs = 3
 
     #   set up train and test dataset and the dataloaders
     temp = setup_datasets_dataloader(batch_size)
@@ -55,8 +55,8 @@ def main():
         print('\nused model:\n', model, '\n\n')
 
         #   Set loss function
-        loss_fn = nn.CrossEntropyLoss()  # criterion
-        #loss_fn = Loss()
+        #loss_fn = nn.CrossEntropyLoss()  # criterion
+        loss_fn = Loss()
 
         #   Optimizing the Model Parameters
         #optimizer = torch.optim.SGD(model.parameters(), lr=learning_rate)
@@ -101,6 +101,9 @@ def main():
                 #bit_width_act = loss_act.retrieve()
                 # bit_width_layer = loss_layer.retrieve()
 
+                for k in model.parameters():
+                    print(k)
+
 
             print('Done!')
 
@@ -113,14 +116,14 @@ def main():
         display_loss_plot(bit_width_per_epoch_param,
                           title="bit-width as parameter during Training",
                           xlabel="Iterations",
-                          ylabel="Bit-Width Parameter")
+                          ylabel="Bit-Width2")
 
         #   plot graph for the bit-width from class WeightBitWidthWeightedBySize
-        #bit_width_per_epoch = np.array([bit_width_per_epoch.detach().to("cpu") for bit_width_per_epoch in bit_widths])
-        #display_loss_plot(bit_width_per_epoch,
-        #                  title="bit-width during Training",
-        #                  xlabel="Iterations",
-        #                  ylabel="Bit-Width")
+        bit_width_per_epoch = np.array([bit_width_per_epoch.detach().to("cpu") for bit_width_per_epoch in bit_widths])
+        display_loss_plot(bit_width_per_epoch,
+                          title="bit-width during Training",
+                          xlabel="Iterations",
+                          ylabel="Bit-Width")
 
         #   plot graph for the accuracy
         acc_per_epoch = [np.mean(acc_per_epoch) for acc_per_epoch in running_test_acc]
@@ -274,11 +277,11 @@ def train(progress_bar_data, dataloader, model, device, loss_fn, optimizer, regu
     for batch, (X, y) in enumerate(dataloader):
         X, y = X.to(device), y.to(device)
         pred = model(X)
-        loss = loss_fn(pred, y.argmax(-1))
+        loss = loss_fn(pred, y.argmax(-1), weight_reg_loss)
 
         # Backpropagation
         optimizer.zero_grad()
-        loss.backward()
+        loss.backward(retain_graph=True)
         optimizer.step()
 
         #   Outout current information in the progressbar (in the for loop for training)
@@ -325,6 +328,7 @@ def test(progress_bar_data, dataloader, model, device, loss_fn):
 
 class Loss(nn.Module):
     def __init__(self):
+        #self.weight_reg_loss = weight_reg_loss
         super(Loss, self).__init__()
 
     def forward(self, inputs, targets, weight_reg_loss):

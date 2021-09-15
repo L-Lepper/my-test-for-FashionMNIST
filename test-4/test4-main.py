@@ -60,7 +60,7 @@ def main():
 
         #   Optimizing the Model Parameters
         #optimizer = torch.optim.SGD(model.parameters(), lr=learning_rate)
-        optimizer = torch.optim.Adam(model.parameters(), lr=learning_rate, weight_decay=2e-5)
+        optimizer = torch.optim.Adam(model.parameters(), lr=learning_rate, weight_decay=0)
 
         #   Training in epochs with refreshing progress bar
         running_loss = []

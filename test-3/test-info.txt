@@ -1,0 +1,7 @@
+Using Cross entropy Loss as loss function.
+
+Use class WeightBitWidthWeightedBySize to penalize more the bit width of larger layers.
+I think it is not the right way: I don´t use it as basic regularization loss that T can add to the cross entropy
+weight_reg_loss.retrieve(as_average=False) Line 281
+
+Idea from https://stackoverflow.com/questions/44743305/re-weight-the-input-to-a-neural-network

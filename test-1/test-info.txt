@@ -1,0 +1,2 @@
+35 Epochs, Changed Bit-Width to 16bit to observe the behavior of the bit width as paramameter
+2021-09-15

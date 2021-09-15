@@ -1,0 +1,8 @@
+3 epochs, bit-width of 16bit
+Add class WeightBitWidthWeightedBySize as loss Term to cross entropy loss (test2-main.py line 340).
+To avoid error massage, loss.backward(retain_graph=True) is needed (line 284).
+
+
+Result:
+The training takes exponentially more time
+Probably it was not applied correctly

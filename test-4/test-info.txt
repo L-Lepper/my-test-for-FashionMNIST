@@ -1,0 +1,3 @@
+same as test 1 but no weight_decay (=0)
+
+result: no change visible, maybe moore epochs needet --> see question in qitter (100 epochs). Them there was a change from 4 bit to 5, higher bit with!

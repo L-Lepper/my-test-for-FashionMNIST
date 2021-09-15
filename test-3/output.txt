@@ -1,0 +1,485 @@
+C:\Users\lukas\.conda\envs\20210525_Python3-8-10_PyTorch1-8-1_Brevitas0-5-1\python.exe C:/Users/lukas/Documents/GitHub/FashionMNIST/FashionMNIST/main.py
+C:\Users\lukas\.conda\envs\20210525_Python3-8-10_PyTorch1-8-1_Brevitas0-5-1\lib\site-packages\torchvision\datasets\mnist.py:498: UserWarning: The given NumPy array is not writeable, and PyTorch does not support non-writeable tensors. This means you can write to the underlying (supposedly non-writeable) NumPy array using the tensor. You may want to copy the array to protect its data or make it writeable before converting it to a tensor. This type of warning will be suppressed for the rest of this program. (Triggered internally at  ..\torch\csrc\utils\tensor_numpy.cpp:180.)
+  return torch.from_numpy(parsed.astype(m[2], copy=False)).view(*s)
+Using cuda device
+Found an already trained model.
+Skip training? [y/n]n
+
+used model:
+ QuantLeNetD2L_DynBitWidth(
+  (net): Sequential(
+    (0): QuantConv2d(
+      1, 6, kernel_size=(5, 5), stride=(1, 1), padding=(2, 2)
+      (input_quant): ActQuantProxyFromInjector(
+        (_zero_hw_sentinel): StatelessBuffer()
+      )
+      (output_quant): ActQuantProxyFromInjector(
+        (_zero_hw_sentinel): StatelessBuffer()
+      )
+      (weight_quant): WeightQuantProxyFromInjector(
+        (_zero_hw_sentinel): StatelessBuffer()
+        (tensor_quant): RescalingIntQuant(
+          (int_quant): IntQuant(
+            (float_to_int_impl): RoundSte()
+            (tensor_clamp_impl): TensorClamp()
+            (delay_wrapper): DelayWrapper(
+              (delay_impl): _NoDelay()
+            )
+          )
+          (scaling_impl): StatsFromParameterScaling(
+            (parameter_list_stats): _ParameterListStats(
+              (first_tracked_param): _ViewParameterWrapper(
+                (view_shape_impl): OverTensorView()
+              )
+              (stats): _Stats(
+                (stats_impl): AbsMax()
+              )
+            )
+            (stats_scaling_impl): _StatsScaling(
+              (affine_rescaling): Identity()
+              (restrict_clamp_scaling): _RestrictClampValue(
+                (clamp_min_ste): Identity()
+                (restrict_value_impl): FloatRestrictValue()
+              )
+              (restrict_scaling_pre): Identity()
+            )
+          )
+          (int_scaling_impl): IntScaling()
+          (zero_point_impl): ZeroZeroPoint(
+            (zero_point): StatelessBuffer()
+          )
+          (msb_clamp_bit_width_impl): BitWidthParameter(
+            (restrict_bit_width_impl): IntRestrictValue(
+              (float_to_int_impl): RoundSte()
+            )
+          )
+        )
+      )
+      (bias_quant): BiasQuantProxyFromInjector(
+        (_zero_hw_sentinel): StatelessBuffer()
+      )
+    )
+    (1): QuantReLU(
+      (input_quant): ActQuantProxyFromInjector(
+        (_zero_hw_sentinel): StatelessBuffer()
+      )
+      (act_quant): ActQuantProxyFromInjector(
+        (_zero_hw_sentinel): StatelessBuffer()
+        (fused_activation_quant_proxy): FusedActivationQuantProxy(
+          (activation_impl): ReLU()
+          (tensor_quant): RescalingIntQuant(
+            (int_quant): IntQuant(
+              (float_to_int_impl): RoundSte()
+              (tensor_clamp_impl): TensorClamp()
+              (delay_wrapper): DelayWrapper(
+                (delay_impl): _NoDelay()
+              )
+            )
+            (scaling_impl): ParameterFromRuntimeStatsScaling(
+              (stats_input_view_shape_impl): OverTensorView()
+              (stats): _Stats(
+                (stats_impl): AbsPercentile()
+              )
+              (restrict_clamp_scaling): _RestrictClampValue(
+                (clamp_min_ste): Identity()
+                (restrict_value_impl): FloatRestrictValue()
+              )
+              (restrict_inplace_preprocess): Identity()
+            )
+            (int_scaling_impl): IntScaling()
+            (zero_point_impl): ZeroZeroPoint(
+              (zero_point): StatelessBuffer()
+            )
+            (msb_clamp_bit_width_impl): BitWidthParameter(
+              (restrict_bit_width_impl): IntRestrictValue(
+                (float_to_int_impl): RoundSte()
+              )
+            )
+          )
+        )
+      )
+    )
+    (2): AvgPool2d(kernel_size=2, stride=2, padding=0)
+    (3): QuantConv2d(
+      6, 16, kernel_size=(5, 5), stride=(1, 1)
+      (input_quant): ActQuantProxyFromInjector(
+        (_zero_hw_sentinel): StatelessBuffer()
+      )
+      (output_quant): ActQuantProxyFromInjector(
+        (_zero_hw_sentinel): StatelessBuffer()
+      )
+      (weight_quant): WeightQuantProxyFromInjector(
+        (_zero_hw_sentinel): StatelessBuffer()
+        (tensor_quant): RescalingIntQuant(
+          (int_quant): IntQuant(
+            (float_to_int_impl): RoundSte()
+            (tensor_clamp_impl): TensorClamp()
+            (delay_wrapper): DelayWrapper(
+              (delay_impl): _NoDelay()
+            )
+          )
+          (scaling_impl): StatsFromParameterScaling(
+            (parameter_list_stats): _ParameterListStats(
+              (first_tracked_param): _ViewParameterWrapper(
+                (view_shape_impl): OverTensorView()
+              )
+              (stats): _Stats(
+                (stats_impl): AbsMax()
+              )
+            )
+            (stats_scaling_impl): _StatsScaling(
+              (affine_rescaling): Identity()
+              (restrict_clamp_scaling): _RestrictClampValue(
+                (clamp_min_ste): Identity()
+                (restrict_value_impl): FloatRestrictValue()
+              )
+              (restrict_scaling_pre): Identity()
+            )
+          )
+          (int_scaling_impl): IntScaling()
+          (zero_point_impl): ZeroZeroPoint(
+            (zero_point): StatelessBuffer()
+          )
+          (msb_clamp_bit_width_impl): BitWidthParameter(
+            (restrict_bit_width_impl): IntRestrictValue(
+              (float_to_int_impl): RoundSte()
+            )
+          )
+        )
+      )
+      (bias_quant): BiasQuantProxyFromInjector(
+        (_zero_hw_sentinel): StatelessBuffer()
+      )
+    )
+    (4): QuantReLU(
+      (input_quant): ActQuantProxyFromInjector(
+        (_zero_hw_sentinel): StatelessBuffer()
+      )
+      (act_quant): ActQuantProxyFromInjector(
+        (_zero_hw_sentinel): StatelessBuffer()
+        (fused_activation_quant_proxy): FusedActivationQuantProxy(
+          (activation_impl): ReLU()
+          (tensor_quant): RescalingIntQuant(
+            (int_quant): IntQuant(
+              (float_to_int_impl): RoundSte()
+              (tensor_clamp_impl): TensorClamp()
+              (delay_wrapper): DelayWrapper(
+                (delay_impl): _NoDelay()
+              )
+            )
+            (scaling_impl): ParameterFromRuntimeStatsScaling(
+              (stats_input_view_shape_impl): OverTensorView()
+              (stats): _Stats(
+                (stats_impl): AbsPercentile()
+              )
+              (restrict_clamp_scaling): _RestrictClampValue(
+                (clamp_min_ste): Identity()
+                (restrict_value_impl): FloatRestrictValue()
+              )
+              (restrict_inplace_preprocess): Identity()
+            )
+            (int_scaling_impl): IntScaling()
+            (zero_point_impl): ZeroZeroPoint(
+              (zero_point): StatelessBuffer()
+            )
+            (msb_clamp_bit_width_impl): BitWidthParameter(
+              (restrict_bit_width_impl): IntRestrictValue(
+                (float_to_int_impl): RoundSte()
+              )
+            )
+          )
+        )
+      )
+    )
+    (5): AvgPool2d(kernel_size=2, stride=2, padding=0)
+    (6): Flatten(start_dim=1, end_dim=-1)
+    (7): QuantLinear(
+      in_features=400, out_features=120, bias=True
+      (input_quant): ActQuantProxyFromInjector(
+        (_zero_hw_sentinel): StatelessBuffer()
+      )
+      (output_quant): ActQuantProxyFromInjector(
+        (_zero_hw_sentinel): StatelessBuffer()
+      )
+      (weight_quant): WeightQuantProxyFromInjector(
+        (_zero_hw_sentinel): StatelessBuffer()
+        (tensor_quant): RescalingIntQuant(
+          (int_quant): IntQuant(
+            (float_to_int_impl): RoundSte()
+            (tensor_clamp_impl): TensorClamp()
+            (delay_wrapper): DelayWrapper(
+              (delay_impl): _NoDelay()
+            )
+          )
+          (scaling_impl): StatsFromParameterScaling(
+            (parameter_list_stats): _ParameterListStats(
+              (first_tracked_param): _ViewParameterWrapper(
+                (view_shape_impl): OverTensorView()
+              )
+              (stats): _Stats(
+                (stats_impl): AbsMax()
+              )
+            )
+            (stats_scaling_impl): _StatsScaling(
+              (affine_rescaling): Identity()
+              (restrict_clamp_scaling): _RestrictClampValue(
+                (clamp_min_ste): Identity()
+                (restrict_value_impl): FloatRestrictValue()
+              )
+              (restrict_scaling_pre): Identity()
+            )
+          )
+          (int_scaling_impl): IntScaling()
+          (zero_point_impl): ZeroZeroPoint(
+            (zero_point): StatelessBuffer()
+          )
+          (msb_clamp_bit_width_impl): BitWidthParameter(
+            (restrict_bit_width_impl): IntRestrictValue(
+              (float_to_int_impl): RoundSte()
+            )
+          )
+        )
+      )
+      (bias_quant): BiasQuantProxyFromInjector(
+        (_zero_hw_sentinel): StatelessBuffer()
+      )
+    )
+    (8): QuantReLU(
+      (input_quant): ActQuantProxyFromInjector(
+        (_zero_hw_sentinel): StatelessBuffer()
+      )
+      (act_quant): ActQuantProxyFromInjector(
+        (_zero_hw_sentinel): StatelessBuffer()
+        (fused_activation_quant_proxy): FusedActivationQuantProxy(
+          (activation_impl): ReLU()
+          (tensor_quant): RescalingIntQuant(
+            (int_quant): IntQuant(
+              (float_to_int_impl): RoundSte()
+              (tensor_clamp_impl): TensorClamp()
+              (delay_wrapper): DelayWrapper(
+                (delay_impl): _NoDelay()
+              )
+            )
+            (scaling_impl): ParameterFromRuntimeStatsScaling(
+              (stats_input_view_shape_impl): OverTensorView()
+              (stats): _Stats(
+                (stats_impl): AbsPercentile()
+              )
+              (restrict_clamp_scaling): _RestrictClampValue(
+                (clamp_min_ste): Identity()
+                (restrict_value_impl): FloatRestrictValue()
+              )
+              (restrict_inplace_preprocess): Identity()
+            )
+            (int_scaling_impl): IntScaling()
+            (zero_point_impl): ZeroZeroPoint(
+              (zero_point): StatelessBuffer()
+            )
+            (msb_clamp_bit_width_impl): BitWidthParameter(
+              (restrict_bit_width_impl): IntRestrictValue(
+                (float_to_int_impl): RoundSte()
+              )
+            )
+          )
+        )
+      )
+    )
+    (9): QuantLinear(
+      in_features=120, out_features=84, bias=True
+      (input_quant): ActQuantProxyFromInjector(
+        (_zero_hw_sentinel): StatelessBuffer()
+      )
+      (output_quant): ActQuantProxyFromInjector(
+        (_zero_hw_sentinel): StatelessBuffer()
+      )
+      (weight_quant): WeightQuantProxyFromInjector(
+        (_zero_hw_sentinel): StatelessBuffer()
+        (tensor_quant): RescalingIntQuant(
+          (int_quant): IntQuant(
+            (float_to_int_impl): RoundSte()
+            (tensor_clamp_impl): TensorClamp()
+            (delay_wrapper): DelayWrapper(
+              (delay_impl): _NoDelay()
+            )
+          )
+          (scaling_impl): StatsFromParameterScaling(
+            (parameter_list_stats): _ParameterListStats(
+              (first_tracked_param): _ViewParameterWrapper(
+                (view_shape_impl): OverTensorView()
+              )
+              (stats): _Stats(
+                (stats_impl): AbsMax()
+              )
+            )
+            (stats_scaling_impl): _StatsScaling(
+              (affine_rescaling): Identity()
+              (restrict_clamp_scaling): _RestrictClampValue(
+                (clamp_min_ste): Identity()
+                (restrict_value_impl): FloatRestrictValue()
+              )
+              (restrict_scaling_pre): Identity()
+            )
+          )
+          (int_scaling_impl): IntScaling()
+          (zero_point_impl): ZeroZeroPoint(
+            (zero_point): StatelessBuffer()
+          )
+          (msb_clamp_bit_width_impl): BitWidthParameter(
+            (restrict_bit_width_impl): IntRestrictValue(
+              (float_to_int_impl): RoundSte()
+            )
+          )
+        )
+      )
+      (bias_quant): BiasQuantProxyFromInjector(
+        (_zero_hw_sentinel): StatelessBuffer()
+      )
+    )
+    (10): QuantReLU(
+      (input_quant): ActQuantProxyFromInjector(
+        (_zero_hw_sentinel): StatelessBuffer()
+      )
+      (act_quant): ActQuantProxyFromInjector(
+        (_zero_hw_sentinel): StatelessBuffer()
+        (fused_activation_quant_proxy): FusedActivationQuantProxy(
+          (activation_impl): ReLU()
+          (tensor_quant): RescalingIntQuant(
+            (int_quant): IntQuant(
+              (float_to_int_impl): RoundSte()
+              (tensor_clamp_impl): TensorClamp()
+              (delay_wrapper): DelayWrapper(
+                (delay_impl): _NoDelay()
+              )
+            )
+            (scaling_impl): ParameterFromRuntimeStatsScaling(
+              (stats_input_view_shape_impl): OverTensorView()
+              (stats): _Stats(
+                (stats_impl): AbsPercentile()
+              )
+              (restrict_clamp_scaling): _RestrictClampValue(
+                (clamp_min_ste): Identity()
+                (restrict_value_impl): FloatRestrictValue()
+              )
+              (restrict_inplace_preprocess): Identity()
+            )
+            (int_scaling_impl): IntScaling()
+            (zero_point_impl): ZeroZeroPoint(
+              (zero_point): StatelessBuffer()
+            )
+            (msb_clamp_bit_width_impl): BitWidthParameter(
+              (restrict_bit_width_impl): IntRestrictValue(
+                (float_to_int_impl): RoundSte()
+              )
+            )
+          )
+        )
+      )
+    )
+    (11): QuantLinear(
+      in_features=84, out_features=10, bias=True
+      (input_quant): ActQuantProxyFromInjector(
+        (_zero_hw_sentinel): StatelessBuffer()
+      )
+      (output_quant): ActQuantProxyFromInjector(
+        (_zero_hw_sentinel): StatelessBuffer()
+      )
+      (weight_quant): WeightQuantProxyFromInjector(
+        (_zero_hw_sentinel): StatelessBuffer()
+        (tensor_quant): RescalingIntQuant(
+          (int_quant): IntQuant(
+            (float_to_int_impl): RoundSte()
+            (tensor_clamp_impl): TensorClamp()
+            (delay_wrapper): DelayWrapper(
+              (delay_impl): _NoDelay()
+            )
+          )
+          (scaling_impl): StatsFromParameterScaling(
+            (parameter_list_stats): _ParameterListStats(
+              (first_tracked_param): _ViewParameterWrapper(
+                (view_shape_impl): OverTensorView()
+              )
+              (stats): _Stats(
+                (stats_impl): AbsMax()
+              )
+            )
+            (stats_scaling_impl): _StatsScaling(
+              (affine_rescaling): Identity()
+              (restrict_clamp_scaling): _RestrictClampValue(
+                (clamp_min_ste): Identity()
+                (restrict_value_impl): FloatRestrictValue()
+              )
+              (restrict_scaling_pre): Identity()
+            )
+          )
+          (int_scaling_impl): IntScaling()
+          (zero_point_impl): ZeroZeroPoint(
+            (zero_point): StatelessBuffer()
+          )
+          (msb_clamp_bit_width_impl): BitWidthParameter(
+            (restrict_bit_width_impl): IntRestrictValue(
+              (float_to_int_impl): RoundSte()
+            )
+          )
+        )
+      )
+      (bias_quant): BiasQuantProxyFromInjector(
+        (_zero_hw_sentinel): StatelessBuffer()
+      )
+    )
+  )
+)
+
+
+Training loss: 2.175859, image  [    0/60000] in epoch [  3/  3] (Accuracy: 37.0%): 100%|██████████| 180000/180000 [12:17<00:00, 244.23it/s]
+Done!
+
+Testing model accuracy:  0.1799
+C:\Users\lukas\.conda\envs\20210525_Python3-8-10_PyTorch1-8-1_Brevitas0-5-1\lib\site-packages\brevitas\quant_tensor\__init__.py:74: TracerWarning: torch.tensor results are registered as constants in the trace. You can safely ignore this warning if you use this function to create tensors out of constant variables that would be the same every time you call this function. In any other case, this might cause the trace to be incorrect.
+  training = torch.tensor(training, dtype=torch.bool)
+C:\Users\lukas\.conda\envs\20210525_Python3-8-10_PyTorch1-8-1_Brevitas0-5-1\lib\site-packages\brevitas\quant_tensor\__init__.py:72: TracerWarning: torch.tensor results are registered as constants in the trace. You can safely ignore this warning if you use this function to create tensors out of constant variables that would be the same every time you call this function. In any other case, this might cause the trace to be incorrect.
+  signed = torch.tensor(signed, dtype=torch.bool)
+Warning: Unsupported operator Quant. No schema registered for this operator.
+Warning: Unsupported operator Quant. No schema registered for this operator.
+Warning: Unsupported operator Quant. No schema registered for this operator.
+Warning: Unsupported operator Quant. No schema registered for this operator.
+Warning: Unsupported operator Quant. No schema registered for this operator.
+Warning: Unsupported operator Quant. No schema registered for this operator.
+Warning: Unsupported operator Quant. No schema registered for this operator.
+Warning: Unsupported operator Quant. No schema registered for this operator.
+Warning: Unsupported operator Quant. No schema registered for this operator.
+Warning: Unsupported operator Quant. No schema registered for this operator.
+Warning: Unsupported operator Quant. No schema registered for this operator.
+Warning: Unsupported operator Quant. No schema registered for this operator.
+Warning: Unsupported operator Quant. No schema registered for this operator.
+Warning: Unsupported operator Quant. No schema registered for this operator.
+Warning: Unsupported operator Quant. No schema registered for this operator.
+Warning: Unsupported operator Quant. No schema registered for this operator.
+Warning: Unsupported operator Quant. No schema registered for this operator.
+Warning: Unsupported operator Quant. No schema registered for this operator.
+Warning: Unsupported operator Quant. No schema registered for this operator.
+Warning: Unsupported operator Quant. No schema registered for this operator.
+Warning: Unsupported operator Quant. No schema registered for this operator.
+Warning: Unsupported operator Quant. No schema registered for this operator.
+Warning: Unsupported operator Quant. No schema registered for this operator.
+Warning: Unsupported operator Quant. No schema registered for this operator.
+Warning: Unsupported operator Quant. No schema registered for this operator.
+Warning: Unsupported operator Quant. No schema registered for this operator.
+Warning: Unsupported operator Quant. No schema registered for this operator.
+
+Testing model accuracy:
+Accuracy of the network on the test images: 82 %
+
+Check accuracy of each class
+Accuracy of T-Shirt : 88 %
+Accuracy of Trouser : 90 %
+Accuracy of Pullover : 67 %
+Accuracy of Dress : 82 %
+Accuracy of  Coat : 72 %
+Accuracy of Sandal : 94 %
+Accuracy of Shirt : 53 %
+Accuracy of Sneaker : 88 %
+Accuracy of   Bag : 100 %
+Accuracy of Ankle Boot : 89 %
+finished
+
+Process finished with exit code 0

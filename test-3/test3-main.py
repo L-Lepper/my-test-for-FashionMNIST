@@ -29,7 +29,7 @@ def main():
     #   Hyperparameters
     learning_rate = 1e-4
     batch_size = 64
-    epochs = 35
+    epochs = 3
 
     #   set up train and test dataset and the dataloaders
     temp = setup_datasets_dataloader(batch_size)
@@ -113,7 +113,7 @@ def main():
         display_loss_plot(bit_width_per_epoch_param,
                           title="bit-width as parameter during Training",
                           xlabel="Iterations",
-                          ylabel="Bit-Width Parameter")
+                          ylabel="Bit-Width2")
 
         #   plot graph for the bit-width from class WeightBitWidthWeightedBySize
         #bit_width_per_epoch = np.array([bit_width_per_epoch.detach().to("cpu") for bit_width_per_epoch in bit_widths])
@@ -278,7 +278,7 @@ def train(progress_bar_data, dataloader, model, device, loss_fn, optimizer, regu
 
         # Backpropagation
         optimizer.zero_grad()
-        loss.backward()
+        loss.backward(weight_reg_loss.retrieve(as_average=False))
         optimizer.step()
 
         #   Outout current information in the progressbar (in the for loop for training)
@@ -323,8 +323,9 @@ def test(progress_bar_data, dataloader, model, device, loss_fn):
     return accuracy_score(y_true, y_pred)
 
 
-class Loss(nn.Module):
+"""class Loss(nn.Module):
     def __init__(self):
+        #self.weight_reg_loss = weight_reg_loss
         super(Loss, self).__init__()
 
     def forward(self, inputs, targets, weight_reg_loss):
@@ -333,7 +334,7 @@ class Loss(nn.Module):
         ce_loss = F.cross_entropy(inputs, targets, reduction='mean')
         regularization_loss = weight_reg_loss.retrieve(as_average=True)
 
-        return ce_loss + regularization_loss
+        return ce_loss + regularization_loss"""
 
 
 def setup_datasets_dataloader(batch_size):
